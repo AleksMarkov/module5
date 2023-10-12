@@ -77,3 +77,18 @@ const historyService = {
 console.log(historyService.getOrdersLog());
 console.log(historyService.getEmails());
 console.log(historyService.getOrdersByEmail("solomon@topmail.net"));
+
+// 4
+const parent = {
+  name: "Stacey",
+  surname: "Moore",
+  age: 54,
+  heritage: "Irish",
+};
+// Change code below this line
+
+const child = {};
+
+// Change code above this line
+child.name = "Jason";
+child.age = 27;
