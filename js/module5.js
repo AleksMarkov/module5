@@ -79,16 +79,182 @@ console.log(historyService.getEmails());
 console.log(historyService.getOrdersByEmail("solomon@topmail.net"));
 
 // 4
-const parent = {
-  name: "Stacey",
-  surname: "Moore",
-  age: 54,
+// const parent = {
+//   name: "Stacey",
+//   surname: "Moore",
+//   age: 54,
+//   heritage: "Irish",
+// };
+// Change code below this line
+
+// const child = Object.create(parent);
+
+// Change code above this line
+// child.name = "Jason";
+// child.age = 27;
+
+// console.log(parent.hasOwnProperty("surname"));
+// console.log(parent.hasOwnProperty("heritage"));
+// console.log(child.hasOwnProperty("name"));
+// console.log(child.hasOwnProperty("age"));
+// console.log(child.age);
+// console.log(child.hasOwnProperty("surname"));
+// console.log(child.surname);
+// console.log(child.hasOwnProperty("heritage")); // повертає false
+// console.log(child.heritage); // повертає "Irish"
+// console.log(parent.isPrototypeOf(child));
+
+// 5
+const ancestor = {
+  name: "Paul",
+  age: 83,
+  surname: "Dawson",
   heritage: "Irish",
 };
 // Change code below this line
 
-const child = {};
+const parent = Object.create(ancestor);
+parent.name = "Stacey";
+parent.surname = "Moore";
+parent.age = 54;
 
-// Change code above this line
+const child = Object.create(parent);
 child.name = "Jason";
 child.age = 27;
+
+// Change code above this line
+console.log(ancestor);
+console.log(parent);
+console.log(child);
+console.log(ancestor.isPrototypeOf(parent)); // повертає true
+console.log(parent.isPrototypeOf(child)); // повертає true
+console.log(ancestor.hasOwnProperty("surname")); // повертає true
+console.log(ancestor.surname); // повертає "Dawson"
+console.log(parent.hasOwnProperty("surname")); // повертає true
+console.log(parent.surname); // повертає "Moore"
+console.log(child.hasOwnProperty("surname")); // повертає false
+console.log(child.surname); // повертає "Moore"
+console.log(ancestor.hasOwnProperty("heritage")); // повертає true
+console.log(ancestor.heritage); // повертає "Irish"
+console.log(parent.hasOwnProperty("heritage")); // повертає false
+console.log(parent.heritage); // повертає "Irish"
+console.log(child.hasOwnProperty("heritage")); // повертає false
+console.log(child.heritage); // повертає "Irish"
+
+// 6
+// class Car {}
+// console.log(new Car());
+
+// class Car {
+// Change code below this line
+//   constructor(brand, model, price) {
+//     this.brand = brand;
+//     this.model = model;
+//     this.price = price;
+//   }
+// Change code above this line
+// }
+// console.log(new Car("Audi", "Q3", 36000)); // утвориться об'єкт { brand: "Audi", model: "Q3", price: 36000 }
+// console.log(new Car("BMW", "X5", 58900)); // утвориться об'єкт { brand: "BMW", model: "X5", price: 58900 }
+// console.log(new Car("Nissan", "Murano", 31700)); // утвориться об'єкт { brand: "Nissan", model: "Murano", price: 31700 }
+// 8
+// class Car {
+// Change code below this line
+//   constructor({ brand, model, price }) {
+//     this.brand = brand;
+//     this.model = model;
+//     this.price = price;
+//   }
+// Change code above this line
+// 9
+//   getPrice() {
+//     return this.price;
+//   }
+//   changePrice(newPrice) {
+//     this.price = newPrice;
+//   }
+// }
+// console.log(new Car({ brand: "Audi", model: "Q3", price: 36000 })); // утвориться об'єкт { brand: "Audi", model: "Q3", price: 36000 }
+// console.log(new Car({ brand: "BMW", model: "X5", price: 58900 })); // утвориться об'єкт { brand: "BMW", model: "X5", price: 58900 }
+// console.log(new Car({ brand: "Nissan", model: "Murano", price: 31700 })); // утвориться об'єкт { brand: "Nissan", model: "Murano", price: 31700 }
+
+// 10
+class Storage {
+  constructor(items) {
+    this.items = items;
+  }
+  getItems() {
+    return this.items;
+  }
+  addItem(newItem) {
+    this.items.push(newItem);
+  }
+  removeItem(itemToRemove) {
+    this.items.indexOf(itemToRemove)
+      ? this.items.splice(this.items.indexOf(itemToRemove), 1)
+      : console.log("There is no item ${itemToRemove}");
+  }
+}
+
+// Change code above this line
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+storage.addItem("Droid");
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+storage.removeItem("Prolonger");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+// 11
+
+// Change code above this line
+
+class StringBuilder {
+  constructor(initialValue) {
+    this.value = initialValue;
+  }
+  getValue() {
+    return this.value;
+  }
+  padEnd(str) {
+    this.value = this.value + str;
+  }
+  padStart(str) {
+    this.value = str + this.value;
+  }
+  padBoth(str) {
+    this.value = str + this.value + str;
+  }
+}
+
+const builder = new StringBuilder(".");
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
+// 12
+
+class Car {
+  // Change code below this line
+  #brand;
+  model;
+  price;
+  constructor({ brand, model, price }) {
+    this.#brand = brand;
+    this.model = model;
+    this.price = price;
+  }
+  getBrand() {
+    return this.#brand;
+  }
+  changeBrand(newBrand) {
+    this.#brand = newBrand;
+  }
+  // Change code above this line
+}
+console.log(new Car({ brand: "Audi", model: "Q3", price: 36000 })); // утвориться об'єкт { brand: "Audi", model: "Q3", price: 36000 }
+console.log(new Car({ brand: "BMW", model: "X5", price: 58900 })); // утвориться об'єкт { brand: "BMW", model: "X5", price: 58900 }
+console.log(new Car({ brand: "Nissan", model: "Murano", price: 31700 })); // утвориться об'єкт { brand: "Nissan", model: "Murano", price: 31700 }
+// console.log(getBrand()); // повертає значення приватної властивості brand.
+// console.log(changeBrand("Honda")); // змінює значення приватної властивості brand на "Honda"
